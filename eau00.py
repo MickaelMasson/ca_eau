@@ -44,6 +44,21 @@ for i in nombres :
 print(", ".join(liste_combinaisons))
 
 """
+3h30 pour faire la v1 de cet exercice. 
+1h30 pour la v2
+Principal difficulté: 
+- j'ai fais l'erreur ligne 13 d'avoir mit les arguments entre[] la reponse de la fonction n'était pas True mais [True]
+  Ce qui me renvoyais toujours dans False l39. j'ai passé enormément de temps a faire des print() des fonctions 
+  et des résultats 
+Ce que j'ai appris : 
+- la version 1 est sans les fonction et je ne comprenais pas comment suivre la trame de Harry expliqué dans la video. 
+  j'ai continuer le cours et j'ai appris les fonctions et comment les appeler.
+- zfill
+- quand une fonction renvoie un booleen pas besoin de mettre if == True juste le rappel de la fonction suffit.
+
+
+
+
 premier_chiffre = 0
 deuxieme_chiffre = 0
 troisieme_chiffre = 0
