@@ -29,6 +29,7 @@ try :
         print(suite_fibonacci(int(argument)))
     else:
         print(-1)
+
 except ValueError :
     print(-1)
 
@@ -38,9 +39,9 @@ except ValueError :
 """
 
 
-XXhXXm pour faire cet exercice. 
+1h pour faire cet exercice. 
 Principal difficulté: 
-- 
+- la gestion des erreur, je n'arrive pas a regrouper les erreurs dans la partie 1
 Ce que j'ai appris : 
 - 
 
