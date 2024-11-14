@@ -32,8 +32,10 @@ def liste_a_l_envers(liste_arguments) :
 # Partie 2 : Parsing
 arguments_utilisateur = input()
 
+
 # Partie 3 : Résolution
 liste_a_l_envers = liste_a_l_envers(separe_arguments(arguments_utilisateur))
+
 
 # Partie 4 : Affichage
 print("\n".join(liste_a_l_envers))
