@@ -1,41 +1,39 @@
 """Suite de Fibonacci"""
+import sys
 
 # Fonctions utilisées
-def suite_fibonacci(nombre) :
-    liste_fibonacci = [0, 1]
-    for i in range(nombre - 1) :
-        resultat = liste_fibonacci[-1] + liste_fibonacci[-2]   
-        liste_fibonacci.append(resultat)
-    return resultat
-
-def argument_conforme(valeur) :
-    if int(valeur) > 1 :
-        resultat_conformite = valeur
-    else :
-        resultat_conformite = -1
-    return resultat_conformite
+def calculate_fibonacci(index) :
+    fibonacci_list = [0, 1]
+    for i in range(1, index) :
+        result = fibonacci_list[-1] + fibonacci_list[-2]   
+        fibonacci_list.append(result)
+    return result
 
 
 # Partie 1 : Gestion d'erreur
+def check_arguments(arguments) :
+    error = ("-1")
 
+    if len(arguments) != 1 :
+        print(error)
+        sys.exit()
+    
+    argument = arguments[0]
+
+    if not argument.isdigit() :
+        print(error)
+        sys.exit()
 
 # Partie 2 : Parsing
-argument = input()
+arguments = sys.argv[1:]
 
 # Partie 3 : Résolution
-
-try :
-    if argument_conforme(int(argument)) != -1 :
-        print(suite_fibonacci(int(argument)))
-    else:
-        print(-1)
-
-except ValueError :
-    print(-1)
-
+check_arguments(arguments)
+number = int(arguments[0])
+result_fibonacci = calculate_fibonacci(number)
 
 # Partie 4 : Affichage
-
+print(result_fibonacci)
 """
 
 
