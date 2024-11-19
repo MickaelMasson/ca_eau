@@ -1,62 +1,67 @@
 """Prochain nombre premier"""
+import sys
 
 # Fonctions utilisées
-
-def verifie_nombre_premier(valeur):
-    for i in range(2, int(valeur) - 1) :
-        resultat_division = int(valeur) / i 
-        if int(resultat_division) * i == int(valeur) :
+def check_prime_number(number):
+    number = int(number)
+    for i in range(2, number - 1) :
+        if number % i == 0 :
             nombre_entier = False
             break
     else :
         nombre_entier = True
     return nombre_entier # booleen
 
-
-def nombre_entier_suivant(valeur):
-    valeur = valeur +1
-    while verifie_nombre_premier(valeur) is False:
-        valeur += 1
+def calculate_next_prime_number(number):
+    number = number +1
+    
+    while check_prime_number(number) is False:
+        number += 1
     else: 
-        entier_suivant = valeur
-    return entier_suivant
-
+        next_prime_number = number
+    return next_prime_number
 
 # Partie 1 : Gestion d'erreur
+def check_arguments(arguments) :
+    error = -1
 
-def argument_autorise(argument) :
-    try:
-        if int(argument) > 0 and argument.isdigit :
-            reponse = True
-        else:
-            reponse = False
-            print(-1)
-        return reponse
-    except ValueError:
-        print(-1)
+    if len(arguments) != 1 :
+        print(error)
+        sys.exit()
+    
+    argument = arguments[0]
 
+    if not argument.isdigit() :
+        print(error)
+        sys.exit()
+
+    number = int(argument)
+
+    if number < 1 :
+        print(error)
+        sys.exit()
 
 # Partie 2 : Parsing
-argument = input()
-
+arguments = sys.argv[1:]
 
 # Partie 3 : Résolution
-if argument_autorise(argument) :
-    print(nombre_entier_suivant(int(argument)))
-
+check_arguments(arguments)
+number = int(arguments[0])
+next_prime_number = calculate_next_prime_number(number)
 
 # Partie 4 : Affichage
+print(next_prime_number)
 
 """
+Prochain nombre premier
+
+Créez un programme qui affiche le premier nombre premier supérieur au nombre donné en argument.
 
 
-1h30 pour faire cet exercice. 
-Principal difficulté: 
-- toujours la structure, bien différencier les 5 parties
-- la derniere partie entre ésolution et affichage je vois pas trop comment le séparer dans ce cas
-- la gestion des erreurs, esque definir un fonction qui vérifie 
-  l'input est bien avec un try puis except
+Exemples d’utilisation :
+$> python exo.py 14
+17
+$>
 
-Ce que j'ai appris : 
-- mieux compris le .isdigit qui revoit direct un booleen sans avoir besoin de faire un == ou autre
+Afficher -1 si le paramètre est négatif ou mauvais.
 """
