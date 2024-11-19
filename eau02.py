@@ -1,55 +1,29 @@
 """Paramètres à l’envers"""
+import sys
 
 # Fonctions utilisées
 
-## separe les arguments
-
-def separe_arguments(string_argument) :
-    try :
-        if '"' in string_argument :
-            liste_argument = string_argument.strip('"').split('" "')
-
-        elif '"' not in string_argument :
-            liste_argument = string_argument.split()
-    except ValueError :
-        print("valuesError")
-    return liste_argument
-   
-
-## récupère le dernier argument de la liste et le supprime
-
-def liste_a_l_envers(liste_arguments) :
-    nouvelle_liste = []
-    for i in range(len(liste_arguments)) :
-        dernier_argument_liste = liste_arguments[-1]
-        nouvelle_liste.append(dernier_argument_liste)
-        liste_arguments = liste_arguments[:-1]
-    return nouvelle_liste
-
-
 # Partie 1 : Gestion d'erreur
 
+def check_several_arrguments(arguments) :
+    if len(arguments) < 1 :
+        print("erreur, vous devez saisir plusieurs arguments")
+        sys.exit()
+      
 # Partie 2 : Parsing
-arguments_utilisateur = input()
+arguments = sys.argv[1:]
 
 
 # Partie 3 : Résolution
-liste_a_l_envers = liste_a_l_envers(separe_arguments(arguments_utilisateur))
+check_several_arrguments(arguments)
 
+for i in arguments[::-1] :
+    print(i, end=" ")
+print("\n")
 
 # Partie 4 : Affichage
-print("\n".join(liste_a_l_envers))
+
 """
-
-
-1h05 pour faire cet exercice. 
-Principal difficulté: 
-- la fonction strip pour retirer des caractères en partant 
-  du début et de la fin de la string.
-- la gestion des erreurs, je ne vois pas quels serais les 
-  erreurs et comment les regrouper dans la partie 1
-Ce que j'ai appris : 
-- 
 
 Créez un programme qui affiche ses arguments reçus à l’envers.
 
