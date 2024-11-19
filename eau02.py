@@ -13,15 +13,15 @@ def check_several_arrguments(arguments) :
 # Partie 2 : Parsing
 arguments = sys.argv[1:]
 
-
 # Partie 3 : Résolution
 check_several_arrguments(arguments)
 
+# Partie 4 : Affichage
+
 for i in arguments[::-1] :
     print(i, end=" ")
+    
 print("\n")
-
-# Partie 4 : Affichage
 
 """
 
