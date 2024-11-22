@@ -2,38 +2,43 @@
 import sys
 
 # Fonctions utilisées
-def calculate_fibonacci(index) :
+def calculate_fibonacci(arguments) :
+    index = int(arguments[0])
     fibonacci_list = [0, 1]
     for i in range(1, index) :
         result = fibonacci_list[-1] + fibonacci_list[-2]   
         fibonacci_list.append(result)
     return result
 
-
 # Partie 1 : Gestion d'erreur
-def check_arguments(arguments) :
-    error = ("-1")
-
+def is_valid_number_of_arguments(arguments) :
     if len(arguments) != 1 :
-        print(error)
-        sys.exit()
-    
-    argument = arguments[0]
+        print("-1")
+        return False
+    return True
 
+def is_digit(arguments) :
+    argument = arguments[0]
     if not argument.isdigit() :
-        print(error)
-        sys.exit()
+        print("-1")
+        return False
+    return True
 
 # Partie 2 : Parsing
-arguments = sys.argv[1:]
+def get_arguments():
+    arguments = sys.argv[1:]
+    return arguments
 
 # Partie 3 : Résolution
-check_arguments(arguments)
-number = int(arguments[0])
-result_fibonacci = calculate_fibonacci(number)
+def display_result() :
+    if not is_valid_number_of_arguments(get_arguments()) :
+        return
+    if not is_digit(get_arguments()) :
+        return
+    print(calculate_fibonacci(get_arguments()))
 
 # Partie 4 : Affichage
-print(result_fibonacci)
+display_result()
 """
 
 
