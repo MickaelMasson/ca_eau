@@ -1,39 +1,43 @@
 """String dans string"""
 import sys
 # Fonctions utilisées
-def compare_arguments(arguments):
+def is_string_in_string(arguments):
     first_argument = arguments[0]
     second_argument = arguments[1]
     if (first_argument in second_argument) or (second_argument in first_argument):
-        awnser = True
+        return True
     else:
-        awnser = False
-    return awnser
+        return False
 
 # Partie 1 : Gestion d'erreur
-def check_arguments(arguments_input):
+def is_valid_number_of_arguments(arguments):
     if len(arguments) != 2 :
         print("Error, vous devez saisir 2 arguments")
-        sys.exit()
+        return False
+    return True
 
 # Partie 2 : Parsing
-arguments = sys.argv[1:]
+def get_arguments() :
+    arguments = sys.argv[1:]
+    return arguments
 
 # Partie 3 : Résolution
-check_arguments(arguments)
-is_corresponding = compare_arguments(arguments)
+def display_is_corresponding() :
+    if not is_valid_number_of_arguments(get_arguments()) :
+        return
+    print(is_string_in_string(get_arguments()))
 
 # Partie 4 : Affichage
-print(is_corresponding)
+display_is_corresponding()
 """
 
 
 1h pour faire cet exercice. 
 Principal difficulté: 
 - nommer les variables et les fonctions
-- j'ai du sorti une liste plutot que 2 arguments dans check_arguments() 
+- j'ai du sorti une liste plutot que 2 arguments dans is_valid_number_of_arguments() 
   car j'avais une erreur comme quoi il me manquait l'argument b 
-  en entrée de compare_arguments(), j'ai donc du avoir une liste à
+  en entrée de is_string_in_string(), j'ai donc du avoir une liste à
   l'entrée puis la séparer a nouveau
 Ce que j'ai appris : 
 - le exit() pour arrter le script 
