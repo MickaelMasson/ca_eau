@@ -8,25 +8,26 @@ def reversed_arguments(arguments) :
         reverse_arguments.append(arguments[i])
     return reverse_arguments
 
-def display_arguments(arguments) :
-    for i in arguments : 
-        print(i)
-
 # Partie 1 : Gestion d'erreur
-def check_number_of_arguments(arguments) :
+def is_valid_number_of_arguments(arguments) :
     if len(arguments) < 1 :
         print("erreur, vous devez saisir au moins un argument")
-        sys.exit()      
+        return False
+    return True
 
 # Partie 2 : Parsing
-arguments = sys.argv[1:]
+def get_arguments ():
+    arguments = sys.argv[1:]
+    return arguments
 
 # Partie 3 : Résolution
-check_number_of_arguments(arguments)
-reverse_arguments = reversed_arguments(arguments)
+def display_reverse_list () :
+    if not is_valid_number_of_arguments(get_arguments()) :
+        return
+    print("\n".join(reversed_arguments(get_arguments())))
 
 # Partie 4 : Affichage
-display_arguments(reverse_arguments)
+display_reverse_list()
 
 """
 
