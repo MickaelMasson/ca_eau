@@ -10,7 +10,7 @@
 # Partie 3 : Résolution
 
 # Partie 4 : Affichage
-
+print("J'ai terminé l'épreuve de l'Eau et c'était enrichissant.")
 """
 
 
