@@ -2,56 +2,59 @@
 import sys
 
 # Fonctions utilisées
-def check_prime_number(number):
-    number = int(number)
+def is_prime_number(number) :
     for i in range(2, number - 1) :
         if number % i == 0 :
-            nombre_entier = False
-            break
-    else :
-        nombre_entier = True
-    return nombre_entier # booleen
+            return False
+    return True
 
-def calculate_next_prime_number(number):
-    number = number +1
+def calculate_next_prime_number(arguments) :
+    number = int(arguments[0])
+    number = number + 1
     
-    while check_prime_number(number) is False:
+    while is_prime_number(number) is False :
         number += 1
-    else: 
-        next_prime_number = number
-    return next_prime_number
+    else : 
+        return number
 
 # Partie 1 : Gestion d'erreur
-def check_arguments(arguments) :
-    error = -1
-
+def is_valid_number_of_arguments(arguments) :
     if len(arguments) != 1 :
-        print(error)
-        sys.exit()
+        print(-1)
+        return False
+    return True
     
+def is_digit(arguments) :
     argument = arguments[0]
-
     if not argument.isdigit() :
-        print(error)
-        sys.exit()
+        print(-1)
+        return False
+    return True
 
-    number = int(argument)
-
+def is_valid_number(arguments) :
+    number = int(arguments[0])
     if number < 1 :
-        print(error)
-        sys.exit()
+        print(-1)
+        return False
+    return True
 
 # Partie 2 : Parsing
-arguments = sys.argv[1:]
+def get_arguments() :
+    arguments = sys.argv[1:]
+    return arguments
 
 # Partie 3 : Résolution
-check_arguments(arguments)
-number = int(arguments[0])
-next_prime_number = calculate_next_prime_number(number)
+def display_next_prime_number() :
+    if not is_valid_number_of_arguments(get_arguments()) :
+        return
+    if not is_digit(get_arguments()) :
+        return
+    if not is_valid_number(get_arguments()) :
+        return
+    print(calculate_next_prime_number(get_arguments()))
 
 # Partie 4 : Affichage
-print(next_prime_number)
-
+display_next_prime_number()
 """
 Prochain nombre premier
 
