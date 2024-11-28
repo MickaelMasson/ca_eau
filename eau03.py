@@ -2,27 +2,25 @@
 import sys
 
 # Fonctions utilisées
-def calculate_fibonacci(arguments) :
-    index = int(arguments[0])
+def get_fibonacci(index_number: int) -> int:
     fibonacci_list = [0, 1]
-    for i in range(1, index) :
+    for _i in range(1, index_number) :
         result = fibonacci_list[-1] + fibonacci_list[-2]   
         fibonacci_list.append(result)
     return result
 
 # Partie 1 : Gestion d'erreur
-def is_valid_number_of_arguments(arguments) :
-    if len(arguments) != 1 :
-        print("-1")
-        return False
-    return True
+def is_valid_arguments(arguments: list, number_of_argument: int) :
+    if len(arguments) != number_of_argument :
+        return print("Error, vos arguments ne sont pas valide")
+    return arguments
 
-def is_digit(arguments) :
-    argument = arguments[0]
-    if not argument.isdigit() :
-        print("-1")
-        return False
-    return True
+def is_digit(string: str):
+    for character in string :
+        if not "0" <= character <= "9" :
+            return print(f"Error, '{string}' n'est pas un nombre entier positif")
+    number = int(string)
+    return number
 
 # Partie 2 : Parsing
 def get_arguments():
@@ -30,15 +28,19 @@ def get_arguments():
     return arguments
 
 # Partie 3 : Résolution
-def display_result() :
-    if not is_valid_number_of_arguments(get_arguments()) :
+def display_fibonacci() :
+    arguments = get_arguments()
+    number_of_argument_expected = 1
+    if not is_valid_arguments(arguments, number_of_argument_expected) :
         return
-    if not is_digit(get_arguments()) :
+    argument = arguments[0]
+    if not is_digit(argument) :
         return
-    print(calculate_fibonacci(get_arguments()))
+    index_number = int(argument)
+    print(get_fibonacci(index_number))
 
 # Partie 4 : Affichage
-display_result()
+display_fibonacci()
 """
 
 
