@@ -2,32 +2,32 @@
 import sys
 
 # Fonctions utilisées
-def reversed_arguments(arguments) :
+def reverse_arguments(arguments) :
     reverse_arguments = []
     for i in range(len(arguments)-1, -1, -1) :
         reverse_arguments.append(arguments[i])
     return reverse_arguments
 
 # Partie 1 : Gestion d'erreur
-def is_valid_number_of_arguments(arguments) :
-    if len(arguments) < 1 :
-        print("erreur, vous devez saisir au moins un argument")
-        return False
+def is_valid_arguments(arguments) :
+    if len(arguments) < 2 :
+        return print("Error, vous devez saisir au moins deux arguments")
     return True
 
 # Partie 2 : Parsing
-def get_arguments ():
+def get_arguments() :
     arguments = sys.argv[1:]
     return arguments
 
 # Partie 3 : Résolution
-def display_reverse_list () :
-    if not is_valid_number_of_arguments(get_arguments()) :
+def display_reversed_list () :
+    arguments = get_arguments()
+    if not is_valid_arguments(arguments) :
         return
-    print("\n".join(reversed_arguments(get_arguments())))
+    print("\n".join(reverse_arguments(arguments)))
 
 # Partie 4 : Affichage
-display_reverse_list()
+display_reversed_list()
 
 """
 
