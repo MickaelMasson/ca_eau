@@ -2,56 +2,56 @@
 import sys
 
 # Fonctions utilisées
-def is_prime_number(number) :
+def is_prime_number(number: int) -> bool:
     for i in range(2, number - 1) :
         if number % i == 0 :
             return False
     return True
 
-def calculate_next_prime_number(arguments) :
-    number = int(arguments[0])
-    number = number + 1
+def get_next_prime_number(number: int) -> int:
+    new_number = number + 1
     
-    while is_prime_number(number) is False :
-        number += 1
+    while is_prime_number(new_number) is False :
+        new_number += 1
     else : 
-        return number
+        return new_number
 
 # Partie 1 : Gestion d'erreur
-def is_valid_number_of_arguments(arguments) :
-    if len(arguments) != 1 :
-        print(-1)
-        return False
-    return True
-    
-def is_digit(arguments) :
-    argument = arguments[0]
-    if not argument.isdigit() :
-        print(-1)
-        return False
-    return True
+def is_valid_arguments(arguments: list, number_of_argument: int) :
+    if len(arguments) != number_of_argument :
+        return print("Error, vos arguments ne sont pas valide")
+    return arguments
 
-def is_valid_number(arguments) :
-    number = int(arguments[0])
+def is_digit(string: str):
+    for character in string :
+        if not "0" <= character <= "9" :
+            return print(f"Error, '{string}' n'est pas un nombre entier positif")
+    number = int(string)
+    return number
+    
+def is_valid_number(number: int) :
     if number < 1 :
-        print(-1)
-        return False
-    return True
+        return print(f"Error, {number} n'est pas un nombre valide")
+    return number
 
 # Partie 2 : Parsing
-def get_arguments() :
+def get_arguments() -> list:
     arguments = sys.argv[1:]
     return arguments
 
 # Partie 3 : Résolution
 def display_next_prime_number() :
-    if not is_valid_number_of_arguments(get_arguments()) :
+    arguments = get_arguments()
+    number_of_argument_expected = 1
+    if not is_valid_arguments(arguments, number_of_argument_expected) :
         return
-    if not is_digit(get_arguments()) :
+    argument = arguments[0]
+    if not is_digit(argument) :
         return
-    if not is_valid_number(get_arguments()) :
+    number = int(argument)
+    if not is_valid_number(number) :
         return
-    print(calculate_next_prime_number(get_arguments()))
+    print(get_next_prime_number(number))
 
 # Partie 4 : Affichage
 display_next_prime_number()
