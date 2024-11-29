@@ -2,47 +2,54 @@
 import sys
 
 # Fonctions utilisées
-def get_ascending_order(arguments) :
-    numbers = [int(argument) for argument in arguments]
-    numbers_ascending_order = sorted(numbers)
-    return numbers_ascending_order
-
-def get_min_difference(numbers) :
-    min_difference = numbers[1] - numbers[0] 
-    for i in range(len(numbers) -1) :
-        if numbers[i + 1] - numbers[i] < min_difference :
-            min_difference = numbers[i + 1] - numbers[i]
+def get_min_difference(numbers: list) -> int:
+    min_difference = 0
+    i = 1
+    for first_number in numbers :
+        for second_number in numbers[i:] :
+            if first_number > second_number :
+                if (first_number - second_number) < min_difference or min_difference == 0 :
+                    min_difference = (first_number - second_number)
+            else:
+                if (second_number - first_number) < min_difference or min_difference == 0 :
+                    min_difference = (second_number - first_number)
+        i += 1
     return min_difference
 
 # Partie 1 : Gestion d'erreur
-def is_valid_number_of_arguments(arguments) :
-    if len(arguments) < 2 :
-        print("Error, vous devez saisir deux valeus minimum")
+def is_valid_arguments(arguments: list, number_of_argument: int) -> bool:
+    if len(arguments) < number_of_argument :
+        print("Error, vos arguments ne sont pas valide")
         return False
     return True
-    
-def is_digit(arguments) :
-    for argument in arguments :
-        if not argument.lstrip("-").isdigit() :
-            print("Error, tous vos arguments doivent être des nombrre entiers")
+
+def is_digit(string: str) -> bool:
+    string = string.lstrip("-")
+    for character in string :
+        if not "0" <= character <= "9" :
+            print(f"Error, '{string}' n'est pas un nombre entier positif")
             return False
     return True
-
+    
 # Partie 2 : Parsing
-def get_arguments() :
+def get_arguments() -> list :
     arguments = sys.argv[1:]
     return arguments
 
 # Partie 3 : Résolution
-def display():
-    if not is_valid_number_of_arguments(get_arguments()) :
+def display_min_difference():
+    arguments = get_arguments()
+    min_number_of_argument_expected = 2
+    if not is_valid_arguments(arguments, min_number_of_argument_expected) :
         return
-    if not is_digit(get_arguments()) :
-        return
-    print(get_min_difference(get_ascending_order(get_arguments())))
+    for argument in arguments :
+        if not is_digit(argument) :
+            return
+    numbers = list(map(int, arguments))
+    print(get_min_difference(numbers))
 
 # Partie 4 : Affichage
-display()
+display_min_difference()
 """
 Créez un programme qui affiche la différence minimum absolue entre deux éléments 
 d’un tableau constitué uniquement de nombres. Nombres négatifs acceptés.
