@@ -2,13 +2,13 @@
 import sys
 
 # Fonctions utilisées
-def is_prime_number(number: int) -> bool:
+def is_prime_number(number: int) -> bool :
     for i in range(2, number - 1) :
         if number % i == 0 :
             return False
     return True
 
-def get_next_prime_number(number: int) -> int:
+def get_next_prime_number(number: int) -> int :
     new_number = number + 1
     
     while is_prime_number(new_number) is False :
@@ -17,25 +17,27 @@ def get_next_prime_number(number: int) -> int:
         return new_number
 
 # Partie 1 : Gestion d'erreur
-def is_valid_arguments(arguments: list, number_of_argument: int) :
+def is_valid_arguments(arguments: list, number_of_argument: int) -> bool :
     if len(arguments) != number_of_argument :
-        return print("Error, vos arguments ne sont pas valide")
-    return arguments
+        print("Error, vos arguments ne sont pas valide")
+        return False
+    return True
 
-def is_digit(string: str):
+def is_digit(string: str) -> bool :
     for character in string :
         if not "0" <= character <= "9" :
-            return print(f"Error, '{string}' n'est pas un nombre entier positif")
-    number = int(string)
-    return number
-    
-def is_valid_number(number: int) :
+            print(f"Error, '{string}' n'est pas un nombre entier positif")
+            return False
+    return True
+
+def is_valid_number(number: int) -> bool :
     if number < 1 :
-        return print(f"Error, {number} n'est pas un nombre valide")
-    return number
+        print(f"Error, {number} n'est pas un nombre valide")
+        return False
+    return True
 
 # Partie 2 : Parsing
-def get_arguments() -> list:
+def get_arguments() -> list :
     arguments = sys.argv[1:]
     return arguments
 
