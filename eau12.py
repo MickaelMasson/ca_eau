@@ -39,7 +39,8 @@ def display_bubble_sort() :
         if not is_digit(argument) :
             return
     numbers = list(map(int, arguments))
-    print(" ".join(map(str, get_bubble_sort(numbers))))
+    sort_numbers = get_bubble_sort(numbers)
+    print(" ".join(map(str, sort_numbers)))
 # Partie 4 : Affichage
 
 display_bubble_sort()
