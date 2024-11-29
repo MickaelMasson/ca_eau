@@ -2,55 +2,57 @@
 import sys
 
 # Fonctions utilisées
-def is_alpha(letter) :
-    if letter.isalpha() :
-        return True
-    else :
+def is_alpha(character: str) -> bool :
+    if not "a" <= character <= "z" and not "A" <= character <= "Z" :
         return False
+    return True
 
-def get_alter_upper_lower(arguments) :
-    argument = arguments[0]
+def get_alter_upper_lower(argument: str) -> str :
     new_string = ""
-    last_letter_is_upper = False
+    last_character_is_upper = False
     for i in range(len(argument)) :
-        letter = argument[i]
-        if is_alpha(letter) :
-            if last_letter_is_upper :
-                new_string = new_string + letter.lower()
-                last_letter_is_upper = False
+        character = argument[i]
+        if is_alpha(character) :
+            if last_character_is_upper :
+                new_string = new_string + character.lower()
+                last_character_is_upper = False
             else :
-                new_string = new_string + letter.upper()
-                last_letter_is_upper = True
+                new_string = new_string + character.upper()
+                last_character_is_upper = True
+
         else :        
-            new_string = new_string + letter
+            new_string = new_string + character
     return new_string
 
 # Partie 1 : Gestion d'erreur
-def is_valid_number_arguments (arguments) :
-    if len(arguments) != 1 :
-        print("Error, vous devez saisir une seule chaine de caractère")
+def is_valid_arguments(arguments: list, number_of_argument: int) :
+    if len(arguments) != number_of_argument :
+        print("Error, vos arguments ne sont pas valide")
         return False
-    return True
+    return arguments
 
-def is_digit_argument (arguments) :
-    argument = arguments[0]
-    if argument.isdigit() :
-        print("Error, vous devez saisir une seule chaine de caractère avec a-z/A-Z")
-        return False
-    return True
+def is_only_digit(string: str) -> bool:
+    for character in string :
+        if not "0" <= character <= "9" :
+            return True
+    print(f"Error, l'argument attendu ne peut pas etre un nombre")    
+    return False
     
 # Partie 2 : Parsing
-def get_arguments() :
+def get_arguments() -> list :
     arguments = sys.argv[1:]
     return arguments
 
 # Partie 3 : Résolution
 def display_new_string() :
-    if not is_valid_number_arguments(get_arguments()) :
+    arguments = get_arguments()
+    number_of_argument_expected = 1
+    if not is_valid_arguments(arguments, number_of_argument_expected) :
         return
-    if not is_digit_argument(get_arguments()) :
+    argument = arguments[0]
+    if not is_only_digit(argument) :
         return
-    print(get_alter_upper_lower(get_arguments()))
+    print(get_alter_upper_lower(argument))
 
 # Partie 4 : Affichage
 display_new_string()
