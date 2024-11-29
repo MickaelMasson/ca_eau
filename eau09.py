@@ -2,53 +2,52 @@
 import sys
 
 # Fonctions utilisées
-def values_list(arguments) :
-    start_of_list = int(arguments[0])
-    end_of_list = int(arguments[1])
-    values_list = []
-    for i in range(start_of_list, end_of_list) :
-        values_list.append(str(i))
-    values = " ".join(values_list)
-    return values
-    
+def get_consecutive_number(first_number: int, second_number: int) -> list :
+    consecutive_number = []
+    if first_number < second_number :
+        for i in range(first_number, second_number) :
+            consecutive_number.append(str(i))
+    else:
+        for i in range(first_number, second_number, -1) :
+            consecutive_number.append(str(i))
+    return consecutive_number
 
 # Partie 1 : Gestion d'erreur
-def is_valid_number_of_arguments(arguments) :
-    if len(arguments) != 2 :
-        print("error, vous devez saisir 2 arguments")
+def is_valid_arguments(arguments: list, number_of_argument: int) -> bool :
+    if len(arguments) != number_of_argument :
+        print("Error, vos arguments ne sont pas valide")
         return False
     return True
-    
-def is_digit(arguments) :
-    for argument in arguments :
-        if not argument.lstrip("-").isdigit() :
-            print("vos arguments doivent être des nombrre entiers")
+
+def is_digit(string: str) -> bool :
+    string = string.lstrip("-")
+    for character in string :
+        if not "0" <= character <= "9" :
+            print(f"Error, '{string}' n'est pas un nombre entier positif")
             return False
     return True
 
-def is_ascending_order(arguments) :
-    if arguments[0] < arguments[1] :
-        print("vos arguments doivent être dans l'ordre croissants")
-        return True
-    return False
-
 # Partie 2 : Parsing
-def get_arguments() :
+def get_arguments() -> list :
     arguments = sys.argv[1:]
     return arguments
 
 # Partie 3 : Résolution
-def display() :
-    if not is_valid_number_of_arguments(get_arguments()) :
+def display_consecutive_number() :
+    arguments = get_arguments()
+    number_of_argument_expected = 2
+    if not is_valid_arguments(arguments, number_of_argument_expected) :
         return
-    if not is_digit(get_arguments()) :
-        return
-    if not is_ascending_order(get_arguments()) :
-        return
-    print(values_list(get_arguments()))
+    for argument in arguments :
+        if not is_digit(argument) :
+            return
+    first_number = int(arguments[0])
+    second_number = int(arguments[1])
+    consecutive_number = get_consecutive_number(first_number, second_number)
+    print(" ".join(consecutive_number))
 
 # Partie 4 : Affichage
-display()
+display_consecutive_number()
 """
 Créez un programme qui affiche toutes les valeurs comprises entre deux nombres dans l’ordre croissant. Min inclus, max exclus.
 
