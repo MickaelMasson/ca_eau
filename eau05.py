@@ -1,48 +1,44 @@
 """String dans string"""
 import sys
 # Fonctions utilisées
-def is_string_in_string(arguments):
-    first_argument = arguments[0]
-    second_argument = arguments[1]
-    if (first_argument in second_argument) or (second_argument in first_argument):
-        return True
+def is_string_in_string(first_string: str, second_string: str) -> bool :
+    if len(first_string) > len(second_string) :
+        main_string = first_string
+        sub_string = second_string
     else:
-        return False
+        main_string = second_string
+        sub_string = first_string
+        
+    for i in range(len(main_string) - len(sub_string) + 1) :
+        if main_string[i:i + len(sub_string)] == sub_string :
+            return True
+    return False
 
 # Partie 1 : Gestion d'erreur
-def is_valid_number_of_arguments(arguments):
-    if len(arguments) != 2 :
-        print("Error, vous devez saisir 2 arguments")
+def is_valid_arguments(arguments: list, number_of_argument: int) -> bool :
+    if len(arguments) != number_of_argument :
+        print(f"Error, Vous devez saisir {number_of_argument} arguments")
         return False
     return True
 
 # Partie 2 : Parsing
-def get_arguments() :
+def get_arguments() -> list :
     arguments = sys.argv[1:]
     return arguments
 
 # Partie 3 : Résolution
 def display_is_corresponding() :
-    if not is_valid_number_of_arguments(get_arguments()) :
+    arguments = get_arguments()
+    number_of_argument_expected = 2
+    if not is_valid_arguments(arguments, number_of_argument_expected) :
         return
-    print(is_string_in_string(get_arguments()))
+    first_string = arguments[0]
+    second_string = arguments[1]
+    print(is_string_in_string(first_string, second_string))
 
 # Partie 4 : Affichage
 display_is_corresponding()
 """
-
-
-1h pour faire cet exercice. 
-Principal difficulté: 
-- nommer les variables et les fonctions
-- j'ai du sorti une liste plutot que 2 arguments dans is_valid_number_of_arguments() 
-  car j'avais une erreur comme quoi il me manquait l'argument b 
-  en entrée de is_string_in_string(), j'ai donc du avoir une liste à
-  l'entrée puis la séparer a nouveau
-Ce que j'ai appris : 
-- le exit() pour arrter le script 
-
-
 Créez un programme qui détermine si une chaîne de caractère se trouve dans une autre.
 
 
