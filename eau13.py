@@ -2,46 +2,50 @@
 import sys
 
 # Fonctions utilisées
-def sort_selection(arguments) :
-    numbers = list(map(int, arguments))
+def get_selection_sort(numbers: list[int]) -> list[int]:
     for i in range(len(numbers)) :
         min = i
         for j in range(i + 1, len(numbers)) :
             if numbers[j] < numbers[min] :
                 min = j
         numbers[min], numbers[i] = numbers[i], numbers[min]
-    string_ascending_order = " ".join(map(str, numbers))
-    return string_ascending_order
+    return numbers
 
 # Partie 1 : Gestion d'erreur
-def is_valid_number_of_arguments(arguments) :
-    if len(arguments) < 3 :
-        print("Error, vous dezvez saisir au moins 2 arguments")
+def is_valid_arguments(arguments: list, number_of_argument: int) -> bool :
+    if len(arguments) < number_of_argument :
+        print("Error, vos arguments ne sont pas valide")
         return False
     return True
-    
-def is_digit(arguments) :
-    for argument in arguments :
-        if not argument.lstrip("-").isdigit() :
-            print("Error, tous vos arguments doivent être des nombrre entiers")
+
+def is_digit(string: str) -> bool:
+    string = string.lstrip("-")
+    for character in string :
+        if not "0" <= character <= "9" or character == "":
+            print(f"Error, '{string}' n'est pas un nombre entier positif")
             return False
     return True
 
 # Partie 2 : Parsing
-def get_arguments() :
+def get_arguments() -> list :
     arguments = sys.argv[1:]
     return arguments
 
 # Partie 3 : Résolution
-def display() :
-    if not is_valid_number_of_arguments(get_arguments()) :
+def display_selection_sort() :
+    arguments = get_arguments()
+    min_number_of_argument_expected = 3
+    if not is_valid_arguments(arguments, min_number_of_argument_expected) :
         return
-    if not is_digit(get_arguments()) :
-        return
-    print(sort_selection(get_arguments()))
+    for argument in arguments :
+        if not is_digit(argument) :
+            return
+    numbers = list(map(int, arguments))
+    sort_numbers = get_selection_sort(numbers)
+    print(" ".join(map(str, sort_numbers)))
 
 # Partie 4 : Affichage
-display()
+display_selection_sort()
 """
 Créez un programme qui trie une liste de nombres. Votre programme devra implémenter l’algorithme du tri par sélection.
 
