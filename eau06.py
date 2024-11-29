@@ -34,9 +34,9 @@ def is_valid_arguments(arguments: list, number_of_argument: int) :
 def is_only_digit(string: str) -> bool:
     for character in string :
         if not "0" <= character <= "9" :
-            return True
+            return False
     print(f"Error, l'argument attendu ne peut pas etre un nombre")    
-    return False
+    return True
     
 # Partie 2 : Parsing
 def get_arguments() -> list :
@@ -50,7 +50,7 @@ def display_new_string() :
     if not is_valid_arguments(arguments, number_of_argument_expected) :
         return
     argument = arguments[0]
-    if not is_only_digit(argument) :
+    if is_only_digit(argument) :
         return
     print(get_alter_upper_lower(argument))
 
