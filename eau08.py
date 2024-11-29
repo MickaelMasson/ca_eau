@@ -2,32 +2,36 @@
 import sys
 
 # Fonctions utilisées
-def is_digit(arguments) :
-    argument = arguments[0]
-    for i in argument :
-        if not i in "0123456789" :
+def is_digit(string: str) -> bool:
+    for character in string :
+        if not "0" <= character <= "9" :
+            print(f"Error, '{string}' n'est pas un nombre entier positif")
             return False
     return True
 
 # Partie 1 : Gestion d'erreur
-def is_valid_number_of_arguments(arguments) :
-    if len(arguments) != 1 :
-        print("error")
+def is_valid_arguments(arguments: list, number_of_argument: int) -> bool:
+    if len(arguments) != number_of_argument :
+        print("Error, vos arguments ne sont pas valide")
         return False
     return True
 
 # Partie 2 : Parsing
-def get_arguments():
+def get_arguments()-> list :
     arguments = sys.argv[1:]
     return arguments
 
 # Partie 3 : Résolution
-def display() :
-    if not is_valid_number_of_arguments(get_arguments()) :
-        return 
-    print(is_digit(get_arguments()))
+def display_is_digit() :
+    arguments = get_arguments()
+    number_of_argument_expected = 1
+    if not is_valid_arguments(arguments, number_of_argument_expected) :
+        return
+    argument = arguments[0]
+    print(is_digit(argument))
+    
 # Partie 4 : Affichage
-display()
+display_is_digit()
 """
 Créez un programme qui détermine si une chaîne de caractères ne contient que des chiffres.
 
