@@ -2,45 +2,56 @@
 import sys
 
 # Fonctions utilisées
-def sort_ascii(arguments) :
-    for i in range(len(arguments)) :
-        min = i
-        for j in range(i + 1, len(arguments)) :
-            if ord(arguments[j][0]) < ord(arguments[min][0]) :
-                min = j
-        arguments[min], arguments[i] = arguments[i], arguments[min]
-    string_ascending_ascii_order = " ".join(map(str, arguments))
-    return string_ascending_ascii_order
+def sort_ascii_order(arguments: list[str]) -> list[str]:
+    ascii_arguments = []
+    for ascii_argument in arguments :
+        ascii_sub_list = []
+        for ascii_character in ascii_argument :
+            ascii_sub_list.append(ord(ascii_character))
+        ascii_arguments.append(ascii_sub_list)
 
+    for i in range(len(ascii_arguments)) :
+        min = i
+        for j in range(i + 1, len(ascii_arguments)) :
+            if ascii_arguments[j] < ascii_arguments[min] :
+                min = j
+        ascii_arguments[min], ascii_arguments[i] = ascii_arguments[i], ascii_arguments[min]
+
+    new_arguments = []
+    for ascii_argument in ascii_arguments :
+        new_sub_arguments = []
+        for ascii_character in ascii_argument :
+            new_sub_arguments.append(chr(ascii_character))
+        new_sub_arguments = "".join(new_sub_arguments)
+        new_arguments.append(new_sub_arguments)
+
+    ascii_order_list = list(map(str.title, new_arguments))
+    return ascii_order_list
 
 # Partie 1 : Gestion d'erreur
-def is_valid_number_of_arguments(arguments) :
-    if len(arguments) < 2 :
-        print("Vous devez saisir au moins deux valeurs")
+def is_valid_arguments(arguments: list, number_of_argument: int) -> bool :
+    if len(arguments) < number_of_argument :
+        print("Error, le nombre d'arguments n'est pas valide")
         return False
-    return True
-    
-def is_alpha(arguments):
-    for argument in arguments :
-        if not argument.isalpha() :
-            print("Vous devez saisir des arguments composés de lettres a-z / A-Z")
-            return False
     return True
 
 # Partie 2 : Parsing
-def get_arguments():
+def get_arguments()-> list :
     arguments = sys.argv[1:]
+    #arguments = ["mickael", "Matthieu", "marie", "david", "Alfred", "margot", "MARIE"]
     return arguments
 
 # Partie 3 : Résolution
-def display() :
-    if not is_valid_number_of_arguments(get_arguments()) :
+def display_sort_ascii() :
+    arguments = get_arguments()
+    min_number_of_argument_expected = 2
+    if not is_valid_arguments(arguments, min_number_of_argument_expected) :
         return
-    if not is_alpha(get_arguments()) :
-        return
-    print(sort_ascii(get_arguments()))
+    lower_arguments = list(map(str.lower, arguments))
+    print(" ".join(sort_ascii_order(lower_arguments)))
+
 # Partie 4 : Affichage
-display()
+display_sort_ascii()
 """
 Créez un programme qui trie les éléments donnés en argument par ordre ASCII.
 
