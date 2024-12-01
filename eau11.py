@@ -19,7 +19,7 @@ def get_min_difference(numbers: list) -> int:
 # Partie 1 : Gestion d'erreur
 def is_valid_arguments(arguments: list, number_of_argument: int) -> bool:
     if len(arguments) < number_of_argument :
-        print("Error, vos arguments ne sont pas valide")
+        print("Error, le nombre d'arguments n'est pas valide")
         return False
     return True
 
