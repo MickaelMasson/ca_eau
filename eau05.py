@@ -27,7 +27,7 @@ def get_arguments() -> list :
     return arguments
 
 # Partie 3 : Résolution
-def display_is_corresponding() :
+def display_is_string_in_string() :
     arguments = get_arguments()
     number_of_argument_expected = 2
     if not is_valid_arguments(arguments, number_of_argument_expected) :
@@ -37,7 +37,7 @@ def display_is_corresponding() :
     print(is_string_in_string(first_string, second_string))
 
 # Partie 4 : Affichage
-display_is_corresponding()
+display_is_string_in_string()
 """
 Créez un programme qui détermine si une chaîne de caractère se trouve dans une autre.
 
