@@ -9,14 +9,14 @@ def is_alpha(character: str) -> bool :
 
 def get_alter_upper_lower(argument: str) -> str :
     new_string = ""
-    last_character_is_upper = False
+    is_upper_last_character = False
     for character in argument :
-        if is_alpha(character) and last_character_is_upper :
+        if is_alpha(character) and is_upper_last_character :
             new_string = new_string + character
-            last_character_is_upper = False
+            is_upper_last_character = not is_upper_last_character
         elif is_alpha(character) :
             new_string = new_string + character.upper()
-            last_character_is_upper = True
+            is_upper_last_character = not is_upper_last_character
         else :        
             new_string = new_string + character
     return new_string
@@ -24,7 +24,7 @@ def get_alter_upper_lower(argument: str) -> str :
 # Partie 1 : Gestion d'erreur
 def is_valid_arguments(arguments: list, number_of_argument: int) -> bool:
     if len(arguments) != number_of_argument :
-        print("Error, vos arguments ne sont pas valide")
+        print("Error, le nombre d'arguments n'est pas valide")
         return False
     return True
 
