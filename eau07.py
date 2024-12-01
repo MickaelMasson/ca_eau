@@ -10,17 +10,17 @@ def is_alpha(character: str) -> bool :
 def get_title_upper(argument: str) -> str :
     argument = argument.lower()
     new_string = ""
-    last_character_is_space = True
+    is_space_last_character = True
     for character in argument :
-        if is_alpha(character) and last_character_is_space :
+        if is_alpha(character) and is_space_last_character :
             new_string = new_string + character.upper()
-            last_character_is_space = False
+            is_space_last_character = not is_space_last_character
         elif character == " " or character == "\n" or character == "\t" :
             new_string = new_string + character
-            last_character_is_space = True
+            is_space_last_character = True
         else :
             new_string = new_string + character
-            last_character_is_space = False
+            is_space_last_character = False
     return new_string
 
 # Partie 1 : Gestion d'erreur
