@@ -9,17 +9,15 @@ def is_prime_number(number: int) -> bool :
     return True
 
 def get_next_prime_number(number: int) -> int :
-    new_number = number + 1
-    
-    while is_prime_number(new_number) is False :
-        new_number += 1
-    else : 
-        return new_number
+    next_prime_number = number + 1
+    while not is_prime_number(next_prime_number) :
+        next_prime_number += 1
+    return next_prime_number
 
 # Partie 1 : Gestion d'erreur
 def is_valid_arguments(arguments: list, number_of_argument: int) -> bool :
     if len(arguments) != number_of_argument :
-        print("Error, vos arguments ne sont pas valide")
+        print("Error, le nombre d'arguments n'est pas valide")
         return False
     return True
 
@@ -30,9 +28,9 @@ def is_digit(string: str) -> bool :
             return False
     return True
 
-def is_valid_number(number: int) -> bool :
+def is_positive_number(number: int) -> bool :
     if number < 1 :
-        print(f"Error, {number} n'est pas un nombre valide")
+        print(f"Error, '{number}' n'est pas un nombre valide, '{number}' doit être plus grand que 0")
         return False
     return True
 
@@ -51,7 +49,7 @@ def display_next_prime_number() :
     if not is_digit(argument) :
         return
     number = int(argument)
-    if not is_valid_number(number) :
+    if not is_positive_number(number) :
         return
     print(get_next_prime_number(number))
 
