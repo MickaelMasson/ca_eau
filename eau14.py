@@ -25,8 +25,7 @@ def sort_ascii_order(arguments: list[str]) -> list[str]:
         new_sub_arguments = "".join(new_sub_arguments)
         new_arguments.append(new_sub_arguments)
 
-    ascii_order_list = list(map(str.title, new_arguments))
-    return ascii_order_list
+    return new_arguments
 
 # Partie 1 : Gestion d'erreur
 def is_valid_arguments(arguments: list, number_of_argument: int) -> bool :
@@ -38,20 +37,21 @@ def is_valid_arguments(arguments: list, number_of_argument: int) -> bool :
 # Partie 2 : Parsing
 def get_arguments()-> list :
     arguments = sys.argv[1:]
-    #arguments = ["mickael", "Matthieu", "marie", "david", "Alfred", "margot", "MARIE"]
     return arguments
 
 # Partie 3 : Résolution
-def display_sort_ascii() :
+def display_sort_ascii_order() :
     arguments = get_arguments()
     min_number_of_argument_expected = 2
     if not is_valid_arguments(arguments, min_number_of_argument_expected) :
         return
     lower_arguments = list(map(str.lower, arguments))
-    print(" ".join(sort_ascii_order(lower_arguments)))
+    arguments_sorted_ascii_order = sort_ascii_order(lower_arguments)
+    title_arguments = list(map(str.title, arguments_sorted_ascii_order))
+    print(" ".join(title_arguments))
 
 # Partie 4 : Affichage
-display_sort_ascii()
+display_sort_ascii_order()
 """
 Créez un programme qui trie les éléments donnés en argument par ordre ASCII.
 
