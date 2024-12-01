@@ -1,10 +1,10 @@
 """
 """
-
+import sys
 # Fonctions utilisées
 
 # Partie 1 : Gestion d'erreur
-def is_valid_agruments(arguments: list, index_number: int) -> bool :
+def is_valid_arguments(arguments: list, index_number: int) -> bool :
     if not len(arguments) > index_number :
         print("Error, le nombre d'arguments n'est pas valide")
         return False
