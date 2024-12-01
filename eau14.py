@@ -2,7 +2,7 @@
 import sys
 
 # Fonctions utilisées
-def sort_ascii_order(arguments: list[str]) -> list[str]:
+def get_sort_ascii_order(arguments: list[str]) -> list[str]:
     ascii_arguments = []
     for ascii_argument in arguments :
         ascii_sub_list = []
@@ -46,7 +46,7 @@ def display_sort_ascii_order() :
     if not is_valid_arguments(arguments, min_number_of_argument_expected) :
         return
     lower_arguments = list(map(str.lower, arguments))
-    arguments_sorted_ascii_order = sort_ascii_order(lower_arguments)
+    arguments_sorted_ascii_order = get_sort_ascii_order(lower_arguments)
     title_arguments = list(map(str.title, arguments_sorted_ascii_order))
     print(" ".join(title_arguments))
 
