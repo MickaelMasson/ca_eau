@@ -5,11 +5,13 @@ import sys
 def get_consecutive_number(first_number: int, second_number: int) -> list :
     consecutive_number = []
     if first_number < second_number :
-        for i in range(first_number, second_number) :
-            consecutive_number.append(str(i))
-    else:
-        for i in range(first_number, second_number, -1) :
-            consecutive_number.append(str(i))
+        start = first_number
+        end = second_number
+    else :
+        start = second_number
+        end = first_number
+    for i in range(start, end) :
+        consecutive_number.append(str(i))
     return consecutive_number
 
 # Partie 1 : Gestion d'erreur
