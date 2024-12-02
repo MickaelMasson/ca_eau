@@ -5,7 +5,6 @@ import sys
 def is_digit(string: str) -> bool:
     for character in string :
         if not "0" <= character <= "9" :
-            print(f"Error, '{string}' n'est pas un nombre entier positif")
             return False
     return True
 
